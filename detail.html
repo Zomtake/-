@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/detail.css"/>
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<div class="message" onclick="history.back()"><img src="images/back.png"/></div>
+			<div class="search">
+				<input type="text" value="自营坚果炒货" />
+			</div>
+			<div class="sys">
+				<img src="images/category.png"/>
+			</div>
+		</header>
+		<div id="box">
+		<main>
+		<div class="banner">
+			<img :src="obj.img"/>
+			<img src="images/detail/banner2.png"/>
+		</div>
+		<div class="title">
+			<h2><img src="images/detail/six.png"/>{{obj.title}}</h2>
+			<div>
+				<em>￥{{obj.price}}.00</em>
+	        	<div class="title_low"><div><img src="images/detail/icon1.png"/></div>降价通知</div>
+				<div class="title_up"><div><img src="images/detail/icon2.png"/></div>关注</div>
+			</div>
+			<p>预计07日08:00开始秒杀</p>
+		</div>
+		<div class="text">
+			<span>白条</span>
+			<p>【白条支付】,首单立减6.8元</p>
+			<div><img src="images/detail/jian.png"/></div>
+		</div>
+		<div class="text text_manjian">
+			<span>促销</span>
+			<em>满减</em>
+			<p>满44元减5元</p>
+		</div>
+		<div class="text text_xuan">
+			<span>已选</span>
+			<p>{{obj.speci}}</p>
+			<div><img src="images/detail/jian.png"/></div>
+		</div>
+		<div class="text text_button">
+			<div class="count">
+					<span class="s_title">数量</span>
+					<div>
+						<button @click="jian()">-</button>
+						<input type="number" min="1" v-model="num"  />
+						<button @click="jia()">+</button>
+					</div>
+					<p>库存{{obj.save}}件</p>
+				</div>
+		</div>
+		<div class="text">
+			<span>送至</span>
+			<p>河南省>信阳市>浉河区>城区</p>
+			<div><img src="images/detail/jian.png"/></div>
+		</div>
+		<div class="text_por"><span>重量</span>0.3kg</div>
+		<div class="text text_xuan">
+			<span>礼品购</span>
+			<p>精美礼品包装</p>
+			<div><img src="images/detail/jian.png"/></div>
+		</div>
+		</main>
+		<div class="meg">
+			<h2>评论(15648)<span>好评度99%</span></h2>
+			<div v-for="item in obj.comment">
+			<div class="meg_name">
+				<div><img src="images/detail/touxiang1.png"/></div>
+				<p>{{item.name}}</p>
+				<span>{{item.data}}</span>
+			</div>
+			<p>非常不错的一次购物,三只松鼠的坚果真好吃,不错不错很喜欢</p>
+			<div class="meg_pic">
+				<ul>
+					<li v-for="pic in item.pic"><img :src="pic"/></li>
+					
+				</ul>
+			</div>
+		  <div class="meg_a">{{obj.speci}}</div>
+		  </div>
+	</div>
+		<footer>
+			<div class="btm">
+				<div class="btm_left">
+				<div><div><img src="images/detail/icon3.png"/></div>供应商</div>
+				<div><div><img src="images/detail/icon4.png"/></div>店铺</div>
+				<div><div><a href="shopcar.html"><img src="images/detail/icon5.png"/></a></div>购物车</div>
+				</div>
+				<div class="btm_right">
+					<p v-on:click="addCar()">加入购物车</p>
+				</div>
+			</div>
+		</footer>
+		</div>
+		<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="axios/dist/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+				var app =  new Vue({
+				el:"#box",
+				data:{
+					num:1,
+					obj:{}
+				},
+				created(){
+					var id = location.search.split("=")[1];
+					axios.get("/detail/"+id).then((res)=>{
+						console.log(res)
+						this.obj = res.data
+					})
+				},
+				methods:{
+					jia(){
+						if (this.num < this.obj.save) {
+						  this.num++	
+						}
+					},
+					jian(){
+						if (this.num >1) {
+							this.num--
+						}
+					},
+					addCar(){
+					   var data = {
+					   	  id:this.obj.id,
+					   	  name:this.obj.category,
+					   	  img:this.obj.img,
+					   	  title:this.obj.title,
+					   	  price:this.obj.price,
+					   	  num:this.num,
+					   	  speci:this.obj.speci,
+					   	  bool:true
+					   }
+					  if(localStorage.getItem("shopCar")){
+					  	var res = JSON.parse(localStorage.getItem("shopCar"))
+					    var bool = true;
+					    for(var i=0;i<res.length;i++){
+					    	if (res[i].id==data.id) {
+					    		res[i].num+=data.num;
+					    		bool = false;
+					    	}
+					    }
+					    if (bool) {
+					    	res.push(data);
+					    }
+					 
+					  	localStorage.setItem("shopCar",JSON.stringify(res))
+				}else{
+					var ary = [data];
+					localStorage.setItem("shopCar",JSON.stringify(ary))
+			   	    }
+				alert("已经加入购物车了，快去看看吧")
+				  }
+			    }
+			 })
+		</script>
+	</body>
+</html>

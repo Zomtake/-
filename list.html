@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/list.css"/>
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<div class="message" onclick="history.back()"><img src="images/classify/back.png"/></div>
+			<div class="search">
+				<input type="text" value="自营坚果炒货" />
+			</div>
+			<div class="sys">
+				<img src="images/category.png"/>
+			</div>
+		</header>
+		<div id="box">
+		<div class="btns">
+			<b class="active" @click="all()">综合</b>
+			<b @click="pay('pay')">销量</b>
+			<b class="icon" @click="pay('price')">价格</b>
+			<b class="icon">筛选</b>
+		</div>
+			
+		<div class="btns btnx">
+			<p class="active">618</p>
+			<p>京东物流</p>
+			<p>品牌</p>
+			<p>分类</p>
+		</div>
+		
+			<div v-if="isShow"></div>
+	     	<main v-else>
+			<div class="idt" v-for="item in ary">
+				<div><img :src="item.img" v-on:click="jump(item.id)"/></div>
+				<div class="text">
+					<p>{{item.title}}</p>
+					<div class="text_many">
+						<em>¥{{item.price}}.00</em>
+						<span>满44减5</span>
+						<span>分期免息</span>
+					</div>
+					<div class="text_many text_a">
+						<span>自营</span>
+						<span>本地仓</span>
+						<a>{{item.pay}}条评论</a>
+						<div><img src="images/list/icon1.png"/></div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+		<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="axios/dist/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			console.log(location.search)
+			
+		   var codeStr = decodeURI(location.search.split("=")[1])
+			
+			var app = new Vue({
+				el:"#box",
+				data:{
+					ary:[],
+					isShow:true,
+					isSort:true,
+					allSave:[]
+				},
+				created(){
+					if (codeStr != "undefined") {
+						axios.get("/list/"+codeStr).then((res)=>{
+							console.log(res)
+							if (res.data.length != 0) {
+								this.isShow = false;
+								this.ary = res.data;
+								this.allSave = res.data;
+							}
+						})
+					}
+				},
+				methods:{
+					jump(id){
+						location = "detail.html?id="+id;
+					},
+					pay(attr){
+						if(this.isSort){
+							this.ary.sort(function(a,b){
+								return a[attr] - b[attr];
+							})
+							this.isSort = false
+						}else{
+							this.ary.sort(function(a,b){
+								return b[attr] - a[attr];
+							})
+							this.isSort = true
+						}
+						
+					},
+				all(){
+					this.ary = this.allSave
+				}
+			}
+		})
+		</script>
+	</body>
+</html>

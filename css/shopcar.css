@@ -1,0 +1,238 @@
+* { margin: 0; padding: 0; box-sizing: border-box;}
+body { font-size: 0.3rem;}
+header {
+	height: 0.9rem;
+	background: #fff;
+	display: flex;
+	border-bottom: 0.02rem solid #F6F6F6;
+	font-size: 0.36rem;
+}
+
+.message,.sys {
+	width: 1.1rem;
+}
+.message a{
+	margin-left: 0.35rem;
+	margin-top: 0.1rem;
+}
+
+.search {
+	flex: 1;
+	color: #666;
+}
+header > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header img {
+	width: 48%;
+	height: auto;
+}
+
+
+.message img {
+	width: 30%;
+}
+header .sys img {
+	width: 40%;
+	height: auto;
+}
+main{
+	margin-bottom:2.3rem;
+}
+.head{
+	display: flex;
+	padding: 0.3rem 0.2rem;
+	position: relative;
+	border-bottom: 0.02rem solid #F6F6F6;
+}
+.head input {
+	width: 0.3rem;
+	height: 0.3rem;
+	margin-left: 0.2rem;
+	margin-top: 0.1rem;
+}
+.head h2{
+	color: #2e2d2d;
+	font-size: 0.32rem;
+	margin-left: 0.2rem;
+}
+.head p{
+	position: absolute;
+	right: 0.4rem;
+	font-size: 0.28rem;
+	line-height: 0.5rem;
+}
+.head_manjian {
+	display: flex;
+	padding: 0.3rem 0.2rem;
+}
+.head_manjian span{
+	color: #fff;
+	background: #f0250f;
+	border: 0.01rem solid #f23737;
+	border-radius: 0.5rem;
+	padding:4px 10px;
+	font-style: normal;
+	font-size: 0.2rem;
+	margin-left: 0.08rem;
+}
+.head_manjian p {
+	margin-left: 0.2rem;
+}
+.add{
+	display: flex;
+	padding-right: 0.2rem;
+	margin-bottom: 0.4rem;
+}
+.add > div:nth-child(1){
+	flex: 2;
+}
+.add > div:nth-child(1) input{
+	width: 0.3rem;
+	height: 0.3rem;
+	margin-top: 1rem;
+    margin-left: 0.2rem;
+}
+.add_content{
+	display: flex;
+	padding: 0.2rem 0rem 0.2rem 0.2rem;
+	flex: 18;
+	box-shadow: 0 0 0.08rem 0.08rem #fbfbfb;
+}
+.add_pic {
+	flex: 3;
+	padding-top: 0.15rem;
+}
+.add_pic img{
+	width: 100%;
+	height: auto;
+}
+.add_text{
+	flex: 7;
+	line-height: 0.42rem;
+}
+.add_text p {
+	color: #2e2d2d;
+	
+}
+.add_text span{
+	color: #848484;
+	font-size: 0.26rem;
+	margin: 0.1rem 0rem;
+}
+.add_text em{
+	color: #f0250f;
+	border: 0.01rem solid #f23737;
+	border-radius: 0.5rem;
+	padding:2px 8px;
+	font-style: normal;
+	font-size: 0.24rem;
+	margin-left: 0.08rem;
+}
+.add_many{
+	display: flex;
+	position: relative;
+}
+.add_many>div:nth-child(1){
+	margin-top: 0.06rem;
+}
+.add_many h2{
+	font-size: 0.3rem;
+	color: #F23030;
+}
+.add_many>div:nth-child(2){
+	position: absolute;
+	right: 0.2rem;
+}
+.add_many>div:nth-child(2) button{
+	width: 0.4rem;
+	height: 0.4rem;
+	background: #fff;
+	font-size: 0.2rem;
+	border: none;
+}
+.add_many>div:nth-child(2) input{
+	width: 0.4rem;
+	height: 0.4rem;
+	text-align: center;
+	background: #f6f6f6;
+	border: none;
+	margin: 0 -0.08rem;
+}
+.add1{
+	margin-bottom: 1.4rem;
+}
+.jiesuan {
+	height: 1.16rem;
+	border-top: 0.02rem solid #ddd;
+	margin-top: 0.34rem;
+	background: #fff;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 0 0.3rem;
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.1rem;
+}
+
+.jiesuan > input {
+	width: 0.3rem;
+	height: 0.3rem;
+}
+.jiesuan > div {
+	flex: 1;
+	margin-left: 0.2rem;
+}
+.jiesuan > div p{
+	font-size: 0.3rem;
+}
+.jiesuan > div em{
+	font-size: 0.4rem;
+	font-style: normal;
+	color: #f33;
+}
+.jiesuan > div span{
+	font-size: 0.24rem;
+	color:#999;
+}
+
+.jiesuan > button {
+	width: 2.3rem;
+	border: none;
+	background: #f33;
+	color: #fff;
+	border-radius: 5px;
+	height: 80%;
+	font-size: 0.28rem;
+	
+}
+footer {
+	height: 1.1rem;
+	background: #fff;
+	border-top: 0.02rem solid #dadada;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	padding: 0.1rem 0;
+}
+footer a {
+	text-decoration: none;
+	color: #555;
+	text-align: center;
+	font-size: 0.26rem;
+}
+footer a img{
+	width:60%;
+	height: auto;
+}
+footer p{
+	margin:  0rem;
+}

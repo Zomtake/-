@@ -1,0 +1,108 @@
+* { margin: 0; padding: 0; box-sizing: border-box; color: #212121;}
+body { font-size: 0.32rem;}
+header {
+	height: 1.1rem;
+	background: #ff2f30;
+	display: flex;
+}
+
+.message,.sys {
+	width: 1.1rem;
+}
+.search {
+	flex: 1;
+}
+header > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header img {
+	width: 40%;
+	height: auto;
+}
+.message img{
+	width: 30%;
+	height: auto;
+}
+
+.search input {
+	width: 95%;
+	height: 0.66rem;
+	background: #ff2f30;
+	border: 1px solid #ff5f5f;
+	border-radius: 5px;
+	color: #fff;
+	padding-left: 12px;
+	font-size: 0.3rem;
+	text-align: center;
+}
+
+main {display: flex;}
+
+aside {
+	flex: 22;
+	background: #f6f6f6;
+	
+}
+
+aside a {
+	display: block;
+	text-align: center;
+	line-height: 1.3rem;
+	color: #848484;
+	text-decoration: none;
+	font-size: 0.28rem;
+	border-right: 0.02rem solid #e9e9e9;
+	
+}
+aside .active {
+	background: #fff;
+	color: #000;
+	border-right:0.02rem solid #FFFFFF;
+	font-size: 0.3rem;
+}
+article{
+	flex: 55;
+	padding: 0.22rem;
+}
+
+article .add img {
+	width: 100%;
+	height: auto;
+}
+article h2 {
+	font-size: 0.26rem;
+	font-weight: normal;
+	margin-top: 8px;
+}
+
+.shop_content {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.shop_content > div {
+	width: 33.33333%;
+	height: 2.15rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	text-align: center;
+}
+
+.shop_content > div > div{
+	width: 80%;
+	font-size: 0.24rem;
+	color: #212121;
+}
+.shop_content > div > div img{
+	width: 90%;
+	height: auto;
+}
+.shop1{
+	padding-top: 0.2rem;
+	border-top: 0.02rem solid #f9f9f9;
+}

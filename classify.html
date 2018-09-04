@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/classify.css"/>
+	</head>
+	<body>
+		<header>
+			<div class="message" onclick="history.back()"><img src="images/classify/back.png"/></div>
+			<div class="search">
+				<input type="text" value="请输入商品、店铺名称" />
+			</div>
+			<div class="sys">
+				<img src="images/saoyisao.png"/>
+			</div>
+		</header>
+		<main id="main">
+			<aside>
+			<a href="#">推荐分类</a>
+			<a href="#" class="active">京东超市</a>
+			<a href="#" class="icon">国际名牌</a>
+			<a href="#" class="icon">奢侈品</a>
+			<a href="#" class="icon">全球购</a>
+			<a href="#" class="icon">男装</a>
+			<a href="#" class="icon">女装</a>
+			<a href="#" class="icon">男鞋</a>
+			<a href="#" class="icon">女鞋</a>
+			<a href="#" class="icon">内衣搭配</a>
+			<a href="#" class="icon">箱包首饰</a>
+			</aside>
+			<article>
+					<div class="add"><img src="images/classify/banner.png"/></div>
+					
+					<div class="shop">
+					<h2>休闲零食</h2>
+					<div class="shop_content">
+						<div v-for="item in ary[0]">
+							<div>
+								<a v-bind="{href:'list.html?keyword='+item.title}">
+								<img :src="item.img"/>
+								</a>
+								<p>{{item.title}}</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="shop shop1">
+					<h2>水果生鲜</h2>
+					<div class="shop_content">
+							<div v-for="item in ary[1]">
+							<div>
+								<img :src="item.img"/>
+								<p>{{item.title}}</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</article>
+		</main>
+		<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="axios/dist/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			  var app = new Vue({
+		    	el:"#main",
+		    	data:{
+		    		ary:[]
+		    	},
+		    	created(){
+		    		this.getData()
+		    	},
+		    	methods:{
+		    		getData(){
+		    			axios.get("/classify").then((res)=>{
+		    				console.log(res.data)
+		    				this.ary = res.data;
+		    			})
+		    		}
+		    	}
+		    })
+		</script>
+	</body>
+</html>

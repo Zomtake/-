@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/user.css"/>
+	</head>
+	<body>
+		<div id="box">
+		<header>
+			<div class="message"><img src="images/back.png"/></div>
+			<div class="search">
+				我的资料
+			</div>
+			<div class="sys" @click="logout()">退出</div>
+		</header>
+		
+		<main>
+			<div class="user">
+			<div><img src="images/user/touxiang.png"/></div>
+			<div>
+				<p @click="login()" v-if="isLogin">未登录</p>
+				<p v-else>{{phone}}</p>
+				<span>我的亲情账号></span>
+			</div>
+			<div>设置</div>
+			</div>
+			
+			<div class="icon">
+				<div>
+					<div><img src="images/user/icon1.png"/></div>
+					<p>代付款</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon2.png"/></div>
+					<p>待收货</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon3.png"/></div>
+					<p>待评价</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon4.png"/></div>
+					<p>退换/售后</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon5.png"/></div>
+					<p>我的订单</p>
+				</div>
+			</div>
+			
+				<div class="icon">
+				<div>
+					<div><img src="images/user/icon6.png"/></div>
+					<p>京乐豆</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon7.png"/></div>
+					<p>优惠券</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon8.png"/></div>
+					<p>京东白条</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon9.png"/></div>
+					<p>礼品卡</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon10.png"/></div>
+					<p>我的钱包</p>
+				</div>
+			</div>
+			
+			<div class="icon">
+				<div>
+					<div><img src="images/user/icon11.png"/></div>
+					<p>618主会场</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon12.png"/></div>
+					<p>领翻倍红包</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon13.png"/></div>
+					<p>赢618元</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon11.png"/></div>
+					<p>我的618</p>
+				</div>
+			</div>
+			
+			<div class="icon icon_1">
+				<div>
+					<div><img src="images/user/icon14.png"/></div>
+					<p>商品关注</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon15.png"/></div>
+					<p>店铺关注</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon16.png"/></div>
+					<p>内容收藏</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon17.png"/></div>
+					<p>浏览记录</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon18.png"/></div>
+					<p>我的活动</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon19.png"/></div>
+					<p>社区</p>
+				</div>
+				<div>
+					<div><img src="images/user/icon20.png"/></div>
+					<p>客户服务</p>
+				</div>
+			</div>
+		</main>
+		
+		<footer>
+		<a href="index.html"><img src="images/home.png"/><p>主页</p></a>
+			<a href="classify.html"><img src="images/category-b.png"/><p>分类</p></a>
+			<a href="shopcar.html"><img src="images/shopping.png"/><p>购物车</p></a>
+			<a href="user.html"><img src="images/uesr.png"/><p>我的</p></a>
+		</footer>
+		</div>
+		<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="axios/dist/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#box",
+				data:{
+					phone:"",
+					isLogin:true
+				},
+				created(){
+					if (localStorage.getItem("phone")) {
+						this.phone = localStorage.getItem("phone")
+						this.isLogin = false;
+					}
+				},
+				methods:{
+					logout(){
+						this.isLogin = true
+						localStorage.removeItem("phone")
+					},
+					login(){
+						localStorage.setItem("loginJump","user.html")
+						location = "denglu.html"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
+.

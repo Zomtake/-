@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/shopcar.css"/>
+		<title></title>
+	</head>
+	<body>
+			<header>
+			<div class="message" onclick="history.back()"><img src="images/back.png"/></div>
+			<div class="search">
+				购物车
+			</div>
+			<div class="sys">
+				<img src="images/category-b.png"/>
+			</div>
+		</header>
+		<div id="box">
+		<main>
+			<div v-for="(item,index) in ary">
+			<div class="head">
+			<div>
+				<input type="checkbox"/>
+			    <label></label>
+			</div>
+			<h2>自营商城</h2>
+			<p>已免运费</p>
+			</div>
+			
+			<div class="head_manjian">
+			<span>满减</span>
+			<p>已购满20元，再减3元</p>
+			</div>
+			
+			<div class="add">
+				<div><input type="checkbox" v-model="item.bool"/></div>
+				<div class="add_content">
+					<div class="add_pic"><img :src="item.img"/></div>
+					<div class="add_text">
+						<p>{{item.title}}</p>
+						<span>1.05kg 25g*30</span>
+						<div>
+						<em>白条3期免息</em> 
+						</div>
+						<div class="add_many">
+						<div><h2>¥{{item.price}}.00</h2></div>
+						<div>
+							<button @click="jian(item)">-</button>
+							<input type="number" v-model="item.num" min="1"/>
+							<button @click="jia(item)">+</button>
+					    	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</main>
+	
+		<div class="jiesuan">
+			<input type="checkbox" v-model="selectAll" v-on:change="select()"/>
+			<div>
+				<p>应付金额：<em>￥{{total}}</em></p>
+				<span>已优惠:￥0.00</span>
+			</div>
+			<button @click="next()">结算({{sumCoat}})</button>
+		</div>
+		
+		<footer>
+			<a href="#"><img src="images/home.png"/><p>主页</p></a>
+			<a href="classify.html"><img src="images/category-b.png"/><p>分类</p></a>
+			<a href="shopcar.html"><img src="images/shopping.png"/><p>购物车</p></a>
+			<a href="user.html"><img src="images/uesr.png"/><p>我的</p></a>
+		</footer>
+	</div>
+		<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+			el:"#box",
+			data:{
+				ary:JSON.parse(localStorage.getItem("shopCar"))||[],
+				selectAll:true
+			},
+			computed:{
+				total(){
+					var res = 0;
+					for(var i=0;i<this.ary.length;i++){
+						if (this.ary[i].bool) {
+							res += this.ary[i].price*this.ary[i].num
+						}
+					}
+					return res;
+				},
+				sumCoat(){
+					var res = 0;
+					for(var i=0;i<this.ary.length;i++){
+						res += this.ary[i].bool;
+					}
+					return res;
+				}
+			},
+			methods:{
+				jia(item){
+					item.num++
+				},
+				jian(item,index){
+					if (item.num <= 1) {
+						if (confirm("你确定要删除这件商品吗")) {
+							this.ary.splice(index,1)
+						}
+					}else{
+						item.num--
+					}
+				},
+				select(){
+					for(var i=0;i<this.ary.length;i++){
+						if (this.selectAll) {
+							this.ary[i].bool = true
+						} else{
+							this.ary[i].bool = false
+						}
+					}
+				},
+				next(){
+					if (localStorage.getItem("phone")) {
+						if (localStorage.getItem("shopCar")) {
+						location = "order.html"
+					} 
+					} else{
+						localStorage.setItem("loginJump","order.html")
+						location = "denglu.html"
+					}
+					
+				}
+			}
+		})
+		</script>
+	</body>
+</html>
